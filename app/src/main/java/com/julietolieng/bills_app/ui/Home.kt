@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
+import com.julietolieng.bills_app.R
 import com.julietolieng.bills_app.databinding.HomePageBinding
 import com.julietolieng.bills_app.ui.utilies.Constance
 
@@ -27,6 +28,50 @@ class Home:AppCompatActivity (){
             startActivity(Intent(this@Home,MainActivity::class.java))
             finish()
 
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setUpBottomNav()
+
+    }
+    fun setUpBottomNav(){
+        binding.bnvHome.setOnItemSelectedListener { menuItem->
+          when(menuItem.itemId){
+              R.id.Summary ->{
+                  supportFragmentManager
+                      .beginTransaction()
+                      .replace(R.id.fcvHome,SummaryFragment())
+                      .commit()
+                  true
+              }
+              R.id.Upcoming ->{
+                  supportFragmentManager
+                      .beginTransaction()
+                      .replace(R.id.fcvHome,UpcomingBillsFragment())
+                      .commit()
+                  true
+              }
+              R.id.Paid ->{
+                  supportFragmentManager
+                      .beginTransaction()
+                      .replace(R.id.fcvHome,PaidBillsFragments())
+                      .commit()
+                  true
+              }
+              R.id.Settings->{
+                  supportFragmentManager
+                      .beginTransaction()
+                      .replace(R.id.fcvHome,SettingsFragment())
+                      .commit()
+                  true
+              }
+              else ->{
+                  false
+              }
+
+          }
         }
     }
 }

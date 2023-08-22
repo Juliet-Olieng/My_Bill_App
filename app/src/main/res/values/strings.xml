@@ -7,4 +7,8 @@
     <string name="paid_bills">paid bills</string>
     <string name="settings">Settings</string>
     <string name="log_out">Log out</string>
+    <string name="Summarys">Summary</string>
+    <string name="upcomings">Upcoming</string>
+    <string name="paid">Paid</string>
+    <string name="setting">Settings</string>
 </resources>
