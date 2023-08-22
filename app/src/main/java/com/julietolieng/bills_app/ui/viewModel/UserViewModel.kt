@@ -9,7 +9,7 @@ import com.julietolieng.bills_app.ui.repository.UserRepository
 import kotlinx.coroutines.launch
 
 class UserViewModel:ViewModel() {
-    val userRepo = UserRepository()
+    private val userRepo = UserRepository()
     val regLiveData= MutableLiveData<RegisterResponse>()
     val errLiveData= MutableLiveData<String>()
 

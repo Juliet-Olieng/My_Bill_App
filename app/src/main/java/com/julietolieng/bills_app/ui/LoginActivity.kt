@@ -1,5 +1,6 @@
 package com.julietolieng.bills_app.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -8,11 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 
 import com.julietolieng.bills_app.databinding.ActivityLoginBinding
 import com.julietolieng.bills_app.ui.model.LoginRequest
+import com.julietolieng.bills_app.ui.model.LoginResponse
+import com.julietolieng.bills_app.ui.utilies.Constance
 import com.julietolieng.bills_app.ui.viewModel.LoginViewModel
 
 class LoginActivity: AppCompatActivity() {
-    lateinit var binding: ActivityLoginBinding
-    val loginnViewModel: LoginViewModel by viewModels()
+    private lateinit var binding: ActivityLoginBinding
+    private val loginViewModel: LoginViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -58,12 +61,27 @@ class LoginActivity: AppCompatActivity() {
                 email = email,
             )
 
-            loginnViewModel.loginUser(loginRequest)
+            loginViewModel.loginUser(loginRequest)
+
+        }
+        fun initObservers(){
+            loginViewModel.logLiveData.observe(this){
+                loginResponse->persistLogin(loginResponse)
+                Toast.makeText(this, loginResponse.message,Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this,Home::class.java))
+            }
         }
 
 
-
         Toast.makeText(this, "login succesfully", Toast.LENGTH_SHORT).show()
+
+    }
+    fun persistLogin(loginResponse: LoginResponse){
+        val sharedPrefs=getSharedPreferences(Constance.PREFS,Context.MODE_PRIVATE)
+        val editor=sharedPrefs.edit()
+        editor.putString(Constance.USER_ID,loginResponse.user_id)
+        editor.putString(Constance.ACCESS_TOKEN,loginResponse.access_token)
+        editor.apply()
     }
 
 

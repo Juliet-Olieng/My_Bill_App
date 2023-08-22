@@ -11,21 +11,18 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class LoginViewModel : ViewModel() {
-
     private val logRepo = LoginRepository()
-
-    private val _logLiveData = MutableLiveData<LoginResponse?>()
-    val logLiveData: MutableLiveData<LoginResponse?> = _logLiveData
-
+    val logLiveData = MutableLiveData<LoginResponse>()
     private val _errLiveData = MutableLiveData<String?>()
-    val errLiveData: LiveData<String?> = _errLiveData
+//    val errLiveData: LiveData<String?> = _errLiveData
+
 
     fun loginUser(loginRequest: LoginRequest) {
         viewModelScope.launch {
             val response = logRepo.login(loginRequest) as Response<LoginResponse>
             if (response.isSuccessful()) {
                 val loginResponse = response.body()
-                _logLiveData.postValue(loginResponse)
+                logLiveData.postValue(response.body())
             } else {
                 val errorBody = response.errorBody()?.string() ?: "Unknown error"
                 _errLiveData.postValue(errorBody)
