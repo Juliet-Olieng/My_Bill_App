@@ -1,12 +1,11 @@
-package com.julietolieng.bills_app.ui
+package ui
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import com.julietolieng.bills_app.R
+import com.julietolieng.bills_app.databinding.ActivityMainBinding
 import com.julietolieng.bills_app.databinding.HomePageBinding
 import com.julietolieng.bills_app.ui.utilies.Constance
 
@@ -25,9 +24,13 @@ class Home:AppCompatActivity (){
             val editor=sharedPreferences.edit()
             editor.apply()
             editor.clear()
-            startActivity(Intent(this@Home,MainActivity::class.java))
+            startActivity(Intent(this@Home, MainActivity::class.java))
             finish()
 
+        }
+        binding.btnAdd.setOnClickListener {
+            val intent= Intent(this,Add_Bills::class.java)
+            startActivity(intent)
         }
     }
 
@@ -42,28 +45,28 @@ class Home:AppCompatActivity (){
               R.id.Summary ->{
                   supportFragmentManager
                       .beginTransaction()
-                      .replace(R.id.fcvHome,SummaryFragment())
+                      .replace(R.id.fcvHome, SummaryFragment())
                       .commit()
                   true
               }
               R.id.Upcoming ->{
                   supportFragmentManager
                       .beginTransaction()
-                      .replace(R.id.fcvHome,UpcomingBillsFragment())
+                      .replace(R.id.fcvHome, UpcomingBillsFragment())
                       .commit()
                   true
               }
               R.id.Paid ->{
                   supportFragmentManager
                       .beginTransaction()
-                      .replace(R.id.fcvHome,PaidBillsFragments())
+                      .replace(R.id.fcvHome, PaidBillsFragments())
                       .commit()
                   true
               }
               R.id.Settings->{
                   supportFragmentManager
                       .beginTransaction()
-                      .replace(R.id.fcvHome,SettingsFragment())
+                      .replace(R.id.fcvHome, SettingsFragment())
                       .commit()
                   true
               }

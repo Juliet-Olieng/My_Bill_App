@@ -1,10 +1,11 @@
-package com.julietolieng.bills_app.ui
+package ui
 
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.julietolieng.bills_app.databinding.ActivityMainBinding
@@ -111,11 +112,11 @@ class MainActivity : AppCompatActivity() {
         val sharedPrefs=getSharedPreferences(Constance.PREFS,Context.MODE_PRIVATE)
         val userId=sharedPrefs.getString(Constance.USER_ID,Constance.EMPTY_STRINGS)?:Constance.EMPTY_STRINGS
         if (userId.isNotBlank()){
-            startActivity(Intent(this,Home::class.java))
+            startActivity(Intent(this, Home::class.java))
             finish()
         }
         else{
-            startActivity(Intent(this,LoginActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 

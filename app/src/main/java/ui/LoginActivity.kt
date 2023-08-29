@@ -1,4 +1,4 @@
-package com.julietolieng.bills_app.ui
+package ui
 
 import android.content.Context
 import android.content.Intent
@@ -68,7 +68,7 @@ class LoginActivity: AppCompatActivity() {
             loginViewModel.logLiveData.observe(this){
                 loginResponse->persistLogin(loginResponse)
                 Toast.makeText(this, loginResponse.message,Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this,Home::class.java))
+                startActivity(Intent(this, Home::class.java))
             }
         }
 

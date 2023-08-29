@@ -11,4 +11,6 @@
     <string name="upcomings">Upcoming</string>
     <string name="paid">Paid</string>
     <string name="setting">Settings</string>
+    <string name="frequency">Frequency</string>
+    <string name="duedate">DueDate</string>
 </resources>
