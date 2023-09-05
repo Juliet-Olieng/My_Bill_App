@@ -29,7 +29,7 @@ class Home:AppCompatActivity (){
 
         }
         binding.btnAdd.setOnClickListener {
-            val intent= Intent(this,Add_Bills::class.java)
+            val intent= Intent(this@Home,Add_Bills::class.java)
             startActivity(intent)
         }
     }

@@ -6,5 +6,8 @@ class Constance {
         const val ACCESS_TOKEN="ACCESS_TOKEN"
         const val USER_ID="USER_ID"
         const val EMPTY_STRINGS=""
+        const val WEEKLY="Weekly"
+        const val MONTHLY="Monthly"
+        const val ANNUAL="Annual"
     }
 }
